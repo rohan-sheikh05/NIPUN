@@ -18,7 +18,7 @@ export function Navbar() {
           <span className="font-display text-lg font-semibold tracking-tight text-line-100">
             NIPUN<span className="text-signal-500">.</span>
           </span>
-          <span className="hidden sm:inline label-tag">rev. 01 — mvp</span>
+          {/* <span className="hidden sm:inline label-tag">rev. 01 — mvp</span> */}
         </Link>
 
         <nav className="flex items-center gap-2">
