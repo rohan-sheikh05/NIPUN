@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  /* Blueprint surfaces — dark technical-drafting palette */
+  --color-blueprint-950: #0a1420;
+  --color-blueprint-900: #101c2c;
+  --color-blueprint-800: #182839;
+  --color-blueprint-700: #24374d;
+  --color-blueprint-600: #33506e;
+
+  /* Line work / text */
+  --color-line-100: #eaf1fa;
+  --color-line-300: #b9c8db;
+  --color-line-500: #7f93ac;
+  --color-line-700: #4c5f76;
+
+  /* Signature accent — safety-orange, used sparingly for action + status */
+  --color-signal-400: #ff8557;
+  --color-signal-500: #ff6b35;
+  --color-signal-600: #e8531f;
+  --color-signal-950: #3a1a0d;
+
+  /* Secondary accent — worn copper, used for verified/premium touches */
+  --color-copper-300: #d9a878;
+  --color-copper-400: #c08552;
+  --color-copper-600: #8a5d38;
+
+  /* Status */
+  --color-verified-500: #45b787;
+  --color-verified-950: #0e2b21;
+  --color-danger-500: #e5484d;
+  --color-danger-950: #331013;
+  --color-pending-500: #d9a441;
+
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-blueprint-950 text-line-100 font-body antialiased;
+    background-image:
+      linear-gradient(var(--color-blueprint-800) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-blueprint-800) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: var(--color-signal-500);
+    color: var(--color-blueprint-950);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-signal-500);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Corner-bracket "crop marks" — the signature framing device, borrowed
+     from technical drawing sheets. Used on cards that represent a real
+     deliverable (a job, a file, a contract) — not decoration everywhere. */
+  .cropmark {
+    position: relative;
+  }
+  .cropmark::before,
+  .cropmark::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0.85;
+  }
+  .cropmark::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid var(--color-signal-500);
+    border-left: 2px solid var(--color-signal-500);
+  }
+  .cropmark::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid var(--color-signal-500);
+    border-right: 2px solid var(--color-signal-500);
+  }
+
+  .label-tag {
+    @apply font-mono text-[11px] uppercase tracking-[0.14em] text-line-500;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
